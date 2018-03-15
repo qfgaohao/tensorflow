@@ -47,4 +47,5 @@ ExternalProject_Add(jemalloc
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -Dwith-jemalloc-prefix:STRING=jemalloc_
         -Dwithout-export:BOOL=ON
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
 )

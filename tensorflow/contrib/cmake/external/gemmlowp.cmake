@@ -14,8 +14,8 @@
 # ==============================================================================
 include (ExternalProject)
 
-set(gemmlowp_URL https://github.com/google/gemmlowp/archive/6a2a90822e8546fc2bfa7044de0faf1c1cb4862f.zip)
-set(gemmlowp_HASH SHA256=3447948d219f3270383766bbe08942888c0eb4e0ca6663c0e0548502ec5bb77d)
+set(gemmlowp_URL https://mirror.bazel.build/github.com/google/gemmlowp/archive/7c7c744640ddc3d0af18fb245b4d23228813a71b.zip)
+set(gemmlowp_HASH SHA256=b852cc90259a7357c8a323f108f2cec6e85979fc3b18b5590b99e0130044b2cf)
 set(gemmlowp_BUILD ${CMAKE_CURRENT_BINARY_DIR}/gemmlowp/src/gemmlowp)
 set(gemmlowp_INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/gemmlowp/src/gemmlowp)
 
@@ -26,4 +26,6 @@ ExternalProject_Add(gemmlowp
     DOWNLOAD_DIR "${DOWNLOAD_LOCATION}"
     BUILD_IN_SOURCE 1
     PATCH_COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/patches/gemmlowp/CMakeLists.txt ${gemmlowp_BUILD}
-    INSTALL_COMMAND "")
+    INSTALL_COMMAND ""
+    CMAKE_ARGS -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+)

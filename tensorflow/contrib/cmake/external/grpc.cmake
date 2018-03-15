@@ -35,8 +35,8 @@ else()
   set(grpc_STATIC_LIBRARIES
       ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/libgrpc++_unsecure.a
       ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/libgrpc_unsecure.a
-      ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/third_party/cares/cares/lib/libcares.a
-      ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/libgpr.a)
+      ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/libgpr.a
+      ${CMAKE_CURRENT_BINARY_DIR}/grpc/src/grpc/third_party/cares/cares/lib/libcares.a)
 endif()
 
 add_definitions(-DGRPC_ARES=0)
@@ -58,7 +58,14 @@ ExternalProject_Add(grpc
         -DPROTOBUF_INCLUDE_DIRS:STRING=${PROTOBUF_INCLUDE_DIRS}
         -DPROTOBUF_LIBRARIES:STRING=${protobuf_STATIC_LIBRARIES}
         -DZLIB_ROOT:STRING=${ZLIB_INSTALL}
+        -DZLIB_LIBRARY:STRING=${CMAKE_BINARY_DIR}/zlib/install/lib/libz.a
+        -DZLIB_INCLUDE_DIR:STRING=${CMAKE_BINARY_DIR}/zlib/install/include
 	-DgRPC_SSL_PROVIDER:STRING=NONE
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
+    CMAKE_ARGS
+        -DRUN_HAVE_POSIX_REGEX=0 
+        -DRUN_HAVE_STD_REGEX=0
+        -DRUN_HAVE_STEADY_CLOCK=0
 )
 
 # grpc/src/core/ext/census/tracing.c depends on the existence of openssl/rand.h.

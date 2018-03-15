@@ -25,7 +25,7 @@ set(gif_HEADERS
     "${gif_INSTALL}/include/gif_lib.h"
 )
 
-if(WIN32)
+if (WIN32)
 
   set(gif_STATIC_LIBRARIES ${gif_INSTALL}/lib/giflib.lib)
 
@@ -50,8 +50,29 @@ if(WIN32)
       DEPENDERS build
   )
 
-else()
+elseif  (CMAKE_SYSTEM_PROCESSOR MATCHES "arm|ARM|Arm")
 
+  set(gif_STATIC_LIBRARIES ${gif_INSTALL}/lib/libgif.a)
+  set(ENV{CFLAGS} "$ENV{CFLAGS} -fPIC")
+
+  ExternalProject_Add(gif
+      PREFIX gif
+      URL ${gif_URL}
+      URL_HASH ${gif_HASH}
+      INSTALL_DIR ${gif_INSTALL}
+      DOWNLOAD_DIR "${DOWNLOAD_LOCATION}"
+      BUILD_COMMAND $(MAKE)
+      INSTALL_COMMAND $(MAKE) install
+      CONFIGURE_COMMAND
+          ${CMAKE_CURRENT_BINARY_DIR}/gif/src/gif/configure
+          --with-pic
+          --prefix=${gif_INSTALL}
+          --libdir=${gif_INSTALL}/lib
+          --enable-shared=yes
+          --host=aarch64-linux-gnu
+  )
+
+else()
   set(gif_STATIC_LIBRARIES ${gif_INSTALL}/lib/libgif.a)
   set(ENV{CFLAGS} "$ENV{CFLAGS} -fPIC")
 
@@ -70,7 +91,6 @@ else()
           --libdir=${gif_INSTALL}/lib
          --enable-shared=yes
   )
-
 endif()
 
 # put gif includes in the directory where they are expected

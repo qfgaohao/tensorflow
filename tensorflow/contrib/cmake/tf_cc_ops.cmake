@@ -15,6 +15,16 @@
 ########################################################
 # tf_cc_framework library
 ########################################################
+
+# added by hao for cross compiling.
+if (CMAKE_SYSTEM_PROCESSOR MATCHES "arm|ARM|Arm")
+    set(EXECUTABLE_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/../x86")
+else ()
+    set(EXECUTABLE_PREFIX "${CMAKE_CURRENT_BINARY_DIR}")
+endif()
+
+
+
 set(tf_cc_framework_srcs
     "${tensorflow_source_dir}/tensorflow/cc/framework/ops.h"
     "${tensorflow_source_dir}/tensorflow/cc/framework/ops.cc"
@@ -83,7 +93,7 @@ foreach(tf_cc_op_lib_name ${tf_cc_op_lib_names})
                ${cc_ops_target_dir}/${tf_cc_op_lib_name}.cc
                ${cc_ops_target_dir}/${tf_cc_op_lib_name}_internal.h
                ${cc_ops_target_dir}/${tf_cc_op_lib_name}_internal.cc
-        COMMAND ${tf_cc_op_lib_name}_gen_cc ${cc_ops_target_dir}/${tf_cc_op_lib_name}.h ${cc_ops_target_dir}/${tf_cc_op_lib_name}.cc ${cc_ops_include_internal} ${tensorflow_source_dir}/tensorflow/core/api_def/base_api
+        COMMAND ${EXECUTABLE_PREFIX}/${tf_cc_op_lib_name}_gen_cc ${cc_ops_target_dir}/${tf_cc_op_lib_name}.h ${cc_ops_target_dir}/${tf_cc_op_lib_name}.cc ${cc_ops_include_internal} ${tensorflow_source_dir}/tensorflow/core/api_def/base_api
         DEPENDS ${tf_cc_op_lib_name}_gen_cc create_cc_ops_header_dir
     )
 

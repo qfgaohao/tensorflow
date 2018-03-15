@@ -63,7 +63,7 @@ if (WIN32)
         DEPENDERS build
     )
 
-else()
+elseif  (CMAKE_SYSTEM_PROCESSOR MATCHES "arm|ARM|Arm")
     ExternalProject_Add(jpeg
         PREFIX jpeg
         URL ${jpeg_URL}
@@ -78,8 +78,25 @@ else()
             --libdir=${jpeg_INSTALL}/lib
             --enable-shared=yes
 	    CFLAGS=-fPIC
+            --host=aarch64-linux-gnu
     )
   
+else()
+    ExternalProject_Add(jpeg
+        PREFIX jpeg
+        URL ${jpeg_URL}
+        URL_HASH ${jpeg_HASH}
+        INSTALL_DIR ${jpeg_INSTALL}
+        DOWNLOAD_DIR "${DOWNLOAD_LOCATION}"
+        BUILD_COMMAND $(MAKE)
+        INSTALL_COMMAND $(MAKE) install
+        CONFIGURE_COMMAND
+            ${jpeg_BUILD}/configure
+            --prefix=${jpeg_INSTALL}
+            --libdir=${jpeg_INSTALL}/lib
+            --enable-shared=yes
+            CFLAGS=-fPIC
+    )
 endif()
 
 # put jpeg includes in the directory where they are expected

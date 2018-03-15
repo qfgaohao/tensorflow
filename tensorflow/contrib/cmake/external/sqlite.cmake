@@ -59,6 +59,7 @@ else()
             -DCMAKE_BUILD_TYPE:STRING=Release
             -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
             -DCMAKE_INSTALL_PREFIX:STRING=${sqlite_INSTALL}
+            -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
     )
 
 endif()

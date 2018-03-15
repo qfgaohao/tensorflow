@@ -57,6 +57,9 @@ ExternalProject_Add(png
         -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
         -DCMAKE_INSTALL_PREFIX:STRING=${png_INSTALL}
 	-DZLIB_ROOT:STRING=${ZLIB_INSTALL}
+        -DZLIB_LIBRARY:STRING=${CMAKE_BINARY_DIR}/zlib/install/lib/libz.a
+        -DZLIB_INCLUDE_DIR:STRING=${CMAKE_BINARY_DIR}/zlib/install/include
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
 )
 
 ## put png includes in the directory where they are expected

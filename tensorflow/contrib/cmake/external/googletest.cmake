@@ -46,4 +46,5 @@ ExternalProject_Add(googletest
         -DBUILD_GMOCK:BOOL=OFF
         -DBUILD_GTEST:BOOL=ON
         -Dgtest_force_shared_crt:BOOL=ON
+        -DCMAKE_TOOLCHAIN_FILE:STRING=${CMAKE_TOOLCHAIN_FILE}
 )

@@ -24,7 +24,7 @@ set(farmhash_HEADERS
     "${farmhash_BUILD}/src/farmhash.h"
 )
 
-if(WIN32)
+if (WIN32)
   set(farmhash_STATIC_LIBRARIES ${farmhash_INSTALL}/lib/farmhash.lib)
 
   ExternalProject_Add(farmhash
@@ -40,6 +40,25 @@ if(WIN32)
           -DCMAKE_BUILD_TYPE:STRING=Release
           -DCMAKE_VERBOSE_MAKEFILE:BOOL=OFF
           -DCMAKE_INSTALL_PREFIX:STRING=${farmhash_INSTALL})
+elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "arm|ARM|Arm")
+  set(farmhash_STATIC_LIBRARIES ${farmhash_INSTALL}/lib/libfarmhash.a)
+
+  ExternalProject_Add(farmhash
+      PREFIX farmhash
+      URL ${farmhash_URL}
+      URL_HASH ${farmhash_HASH}
+      DOWNLOAD_DIR "${DOWNLOAD_LOCATION}"
+      BUILD_COMMAND $(MAKE)
+      INSTALL_COMMAND $(MAKE) install
+      CONFIGURE_COMMAND
+          ${farmhash_BUILD}/configure
+          --prefix=${farmhash_INSTALL}
+          --libdir=${farmhash_INSTALL}/lib
+          --enable-shared=yes
+          CXXFLAGS=-fPIC
+          --host=aarch64-linux-gnu
+)
+
 else()
   set(farmhash_STATIC_LIBRARIES ${farmhash_INSTALL}/lib/libfarmhash.a)
 
@@ -56,7 +75,6 @@ else()
           --libdir=${farmhash_INSTALL}/lib
           --enable-shared=yes
           CXXFLAGS=-fPIC)
-
 endif()
 
 # put farmhash includes in the directory where they are expected
