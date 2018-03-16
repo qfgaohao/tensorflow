@@ -29,6 +29,7 @@ cd tensorflow/contrib/cmake
 mkdir arm
 cd arm
 cmake ..  -DCMAKE_BUILD_TYPE=Release -Dtensorflow_BUILD_PYTHON_BINDINGS=OFF -Dtensorflow_BUILD_SHARED_LIB=ON -DCMAKE_TOOLCHAIN_FILE=<YOU TOOLCHAIN FILE>
+make -j$(nproc)
 ```
 
 ## Others
