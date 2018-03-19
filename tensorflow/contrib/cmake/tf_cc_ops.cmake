@@ -71,6 +71,7 @@ foreach(tf_cc_op_lib_name ${tf_cc_op_lib_names})
     # Using <TARGET_OBJECTS:...> to work around an issue where no ops were
     # registered (static initializers dropped by the linker because the ops
     # are not used explicitly in the *_gen_cc executables).
+    # Hao
     add_executable(${tf_cc_op_lib_name}_gen_cc
         $<TARGET_OBJECTS:tf_cc_op_gen_main>
         $<TARGET_OBJECTS:tf_${tf_cc_op_lib_name}>

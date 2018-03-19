@@ -87,7 +87,7 @@ if(NOT WIN32)
                "${CMAKE_CURRENT_BINARY_DIR}/${REL_DIR}/${FIL_WE}.pb.h"
         COMMAND ${EXECUTABLE_PREFIX}/protobuf/src/protobuf/protoc
         ARGS --grpc_out ${CMAKE_CURRENT_BINARY_DIR} --cpp_out ${CMAKE_CURRENT_BINARY_DIR} --plugin protoc-gen-grpc=${EXECUTABLE_PREFIX}/grpc/src/grpc/grpc_cpp_plugin -I ${ROOT_DIR} ${ABS_FIL} -I ${PROTOBUF_INCLUDE_DIRS}
-        DEPENDS ${ABS_FIL} protobuf grpc
+        DEPENDS ${ABS_FIL}  protobuf grpc 
         COMMENT "Running C++ protocol buffer grpc compiler on ${FIL}"
         VERBATIM )
     endforeach()
@@ -120,7 +120,7 @@ function(RELATIVE_PROTOBUF_TEXT_GENERATE_CPP SRCS HDRS ROOT_DIR)
              "${CMAKE_CURRENT_BINARY_DIR}/${REL_DIR}/${FIL_WE}.pb_text.h"
       COMMAND ${EXECUTABLE_PREFIX}/proto_text
       ARGS "${CMAKE_CURRENT_BINARY_DIR}/${REL_DIR}" ${REL_DIR} ${ABS_FIL} "${ROOT_DIR}/tensorflow/tools/proto_text/placeholder.txt"
-      DEPENDS ${ABS_FIL} ${PROTO_TEXT_EXE}
+      DEPENDS ${ABS_FIL} ${PROTO_TEXT_EXE} #Hao
       COMMENT "Running C++ protocol buffer text compiler (${PROTO_TEXT_EXE}) on ${FIL}"
       VERBATIM )
   endforeach()
@@ -188,13 +188,13 @@ RELATIVE_PROTOBUF_TEXT_GENERATE_CPP(PROTO_TEXT_SRCS PROTO_TEXT_HDRS
 if(WIN32)
   add_library(tf_protos_cc ${PROTO_SRCS} ${PROTO_HDRS})
 else()
-  file(GLOB_RECURSE tf_protos_grpc_cc_srcs RELATIVE ${tensorflow_source_dir}
-      "${tensorflow_source_dir}/tensorflow/core/debug/*.proto"
-  )
-  RELATIVE_PROTOBUF_GENERATE_GRPC_CPP(PROTO_GRPC_SRCS PROTO_GRPC_HDRS
-      ${tensorflow_source_dir} ${tf_protos_grpc_cc_srcs}
-  )
-  add_library(tf_protos_cc ${PROTO_GRPC_SRCS} ${PROTO_GRPC_HDRS} ${PROTO_SRCS} ${PROTO_HDRS})
+#  file(GLOB_RECURSE tf_protos_grpc_cc_srcs RELATIVE ${tensorflow_source_dir}
+#      "${tensorflow_source_dir}/tensorflow/core/debug/*.proto"
+#  )
+#  RELATIVE_PROTOBUF_GENERATE_GRPC_CPP(PROTO_GRPC_SRCS PROTO_GRPC_HDRS
+#      ${tensorflow_source_dir} ${tf_protos_grpc_cc_srcs}
+#  )
+  add_library(tf_protos_cc ${PROTO_SRCS} ${PROTO_HDRS})
 endif()
 
 ########################################################
@@ -205,6 +205,13 @@ file(GLOB_RECURSE tf_core_lib_srcs
     "${tensorflow_source_dir}/tensorflow/core/lib/*.cc"
     "${tensorflow_source_dir}/tensorflow/core/public/*.h"
 )
+
+file(GLOB tf_core_lib_exclude_srcs
+  "${tensorflow_source_dir}/tensorflow/core/lib/db/*.cc"
+  "${tensorflow_source_dir}/tensorflow/core/lib/db/*.h"
+)
+list(REMOVE_ITEM tf_core_lib_srcs ${tf_core_lib_exclude_srcs})
+
 
 file(GLOB tf_core_platform_srcs
     "${tensorflow_source_dir}/tensorflow/core/platform/*.h"
@@ -316,8 +323,8 @@ file(GLOB_RECURSE tf_core_framework_srcs
     "${tensorflow_source_dir}/tensorflow/core/common_runtime/session.cc"
     "${tensorflow_source_dir}/tensorflow/core/common_runtime/session_factory.cc"
     "${tensorflow_source_dir}/tensorflow/core/common_runtime/session_options.cc"
-    "${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/*.cc"
-    "${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/*.h"
+#    "${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/*.cc"
+#    "${tensorflow_source_dir}/tensorflow/contrib/tensorboard/db/*.h"
     "${tensorflow_source_dir}/public/*.h"
 )
 
