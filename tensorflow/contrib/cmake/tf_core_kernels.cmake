@@ -154,6 +154,153 @@ file(GLOB_RECURSE tf_core_kernels_exclude_srcs
    "${tensorflow_source_dir}/tensorflow/core/kernels/fuzzing/*"
    "${tensorflow_source_dir}/tensorflow/core/kernels/hexagon/*"
    "${tensorflow_source_dir}/tensorflow/core/kernels/remote_fused_graph_rewriter_transform*.cc"
+
+
+   # Hao
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acos.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acosh.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_asin.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_asin.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_atan.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_atan.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_atan2.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_atan2.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_complex.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_complex.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cos.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cos.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cosh.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cosh.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_sin.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_sin.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acos.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acosh.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acos.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acosh.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acos.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_acosh.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/debug_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/debug_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_gpu.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_gpu.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/gpu_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/gpu_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_gpu_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_gpu_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/cuda_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/cuda_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cuda.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cuda.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cuda_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_cuda_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_wav_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_wav_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_training_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_training_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/training_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/training_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_training.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_training.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_reader.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_reader.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/reader_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/reader_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_reader_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/*_reader_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/svd_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/svd_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mkl_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mkl_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mirror_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mirror_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mfcc*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/mfcc*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/matrix_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/matrix_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/lookup_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/lookup_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/histogram_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/histogram_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/encode_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/encode_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/decode_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/decode_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/example_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/example_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/extract_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/extract_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/i_remote_fused_graph_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/i_remote_fused_graph_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/summary_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/summary_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/spectrogram*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/spectrogram*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/sparse*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/sparse*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/save_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/save_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/data/*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/data/*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/batching_util/*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/batching_util/*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/adjust_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/adjust_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bincount_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bincount_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bucketize_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bucketize_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/check_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/check_*.cc"
+
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bucketize_*.h"
+   "${tensorflow_source_dir}/tensorflow/core/kernels/bucketize_*.cc"
+
 )
 list(REMOVE_ITEM tf_core_kernels_srcs ${tf_core_kernels_exclude_srcs})
 
